@@ -5,6 +5,8 @@ import nl.novi.yannickhoebers.reversedrecipe.repository.CookRepository;
 import nl.novi.yannickhoebers.reversedrecipe.service.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,5 +31,10 @@ public class CookController {
         }else {
             throw new NotFoundException("cook not found with id " + id);
         }
+    }
+
+    @PostMapping("/cooks")
+    public Cook createCook(@Valid @RequestBody Cook cook) {
+        return cookRepository.save(cook);
     }
 }
