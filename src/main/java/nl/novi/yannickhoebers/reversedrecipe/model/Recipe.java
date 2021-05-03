@@ -26,11 +26,19 @@ public class Recipe implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column
+    private String recipeName;
+    @Column
+    private int portion;
+    @Column
+    private String meat;
+    @Column
+    private String vegetable;
+    @Column
+    private String other;
+    @Column
+    private String instructions;
 
-    @Column(name = "grade")
-    private int grade;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cook_id", nullable = false)
@@ -39,9 +47,13 @@ public class Recipe implements Serializable{
 
     public Recipe() {}
 
-    public Recipe(String name, int grade) {
-        this.name = name;
-        this.grade = grade;
+    public Recipe(String recipeName, int portion, String meat, String vegetable, String other, String instructions) {
+        this.recipeName = recipeName;
+        this.portion = portion;
+        this.meat = meat;
+        this.vegetable = vegetable;
+        this.other = other;
+        this.instructions = instructions;
     }
 
     public void setId(Long id) {
@@ -52,21 +64,6 @@ public class Recipe implements Serializable{
         return this.id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
-
-    public int getGrade() {
-        return this.grade;
-    }
 
     public void setCook(Cook cook) {
         this.cook = cook;

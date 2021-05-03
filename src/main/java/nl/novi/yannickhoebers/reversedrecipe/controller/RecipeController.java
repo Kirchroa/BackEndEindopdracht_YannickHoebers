@@ -1,4 +1,4 @@
 package nl.novi.yannickhoebers.reversedrecipe.controller;
 
-public class RestController {
+public class RecipeController {
 }

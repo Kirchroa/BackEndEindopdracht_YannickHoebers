@@ -26,10 +26,16 @@ public class Cook implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column
     private String name;
 
-    @Column(name = "age")
+    @Column
+    private String surName;
+
+    @Column
+    private String gender;
+
+    @Column
     private int age;
 
     @OneToMany(mappedBy = "cook", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -37,13 +43,31 @@ public class Cook implements Serializable{
 
     public Cook() {}
 
-    public Cook(String name, int age) {
+    public Cook(String name, String surname, String gender, int age) {
         this.name = name;
+        this.surName = surname;
+        this.gender = gender;
         this.age = age;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getSurName() {
+        return surName;
+    }
+
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Long getId() {
