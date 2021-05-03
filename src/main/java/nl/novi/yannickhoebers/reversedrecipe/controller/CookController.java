@@ -50,4 +50,13 @@ public class CookController {
                     return cookRepository.save(cook);
                 }).orElseThrow(() -> new NotFoundException("Cook not found with id " + id));
     }
+
+    @DeleteMapping("/cooks/{id}")
+    public String deleteCook(@PathVariable Long id) {
+        return cookRepository.findById(id)
+                .map(cook -> {
+                    cookRepository.delete(cook);
+                    return "Delete Successfully!";
+                }).orElseThrow(() -> new NotFoundException("Cook not found with id " + id));
+    }
 }
