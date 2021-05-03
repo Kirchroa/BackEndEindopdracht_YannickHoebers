@@ -37,4 +37,17 @@ public class CookController {
     public Cook createCook(@Valid @RequestBody Cook cook) {
         return cookRepository.save(cook);
     }
+
+    @PutMapping("/cooks/{id}")
+    public Cook updateCook(@PathVariable Long id,
+                           @Valid @RequestBody Cook cookUpdated) {
+        return cookRepository.findById(id)
+                .map(cook -> {
+                    cook.setName(cookUpdated.getName());
+                    cook.setSurName(cookUpdated.getSurName());
+                    cook.setAge(cookUpdated.getAge());
+                    cook.setGender(cookUpdated.getGender());
+                    return cookRepository.save(cook);
+                }).orElseThrow(() -> new NotFoundException("Cook not found with id " + id));
+    }
 }
