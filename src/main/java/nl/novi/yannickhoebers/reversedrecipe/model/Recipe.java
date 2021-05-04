@@ -64,6 +64,53 @@ public class Recipe implements Serializable{
         return this.id;
     }
 
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
+
+    public int getPortion() {
+        return portion;
+    }
+
+    public void setPortion(int portion) {
+        this.portion = portion;
+    }
+
+    public String getMeat() {
+        return meat;
+    }
+
+    public void setMeat(String meat) {
+        this.meat = meat;
+    }
+
+    public String getVegetable() {
+        return vegetable;
+    }
+
+    public void setVegetable(String vegetable) {
+        this.vegetable = vegetable;
+    }
+
+    public String getOther() {
+        return other;
+    }
+
+    public void setOther(String other) {
+        this.other = other;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
 
     public void setCook(Cook cook) {
         this.cook = cook;
