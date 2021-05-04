@@ -94,7 +94,7 @@ public class Cook implements Serializable{
         this.recipes = recipes;
     }
 
-    public Set<Recipe> getAssignments(){
+    public Set<Recipe> getRecipes(){
         return this.recipes;
     }
 }
