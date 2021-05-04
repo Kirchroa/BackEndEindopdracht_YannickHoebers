@@ -38,4 +38,27 @@ public class RecipeController {
                     return recipeRepository.save(recipe);
                 }).orElseThrow(() -> new NotFoundException("Cook not found!"));
     }
+
+    @PutMapping("/cooks/{cookId}/recipes/{recipeId}")
+    public Recipe updateRecipe(@PathVariable Long cookId,
+                               @PathVariable Long recipeId,
+                               @Valid @RequestBody Recipe recipeUpdated) {
+
+        if(!cookRepository.existsById(cookId)) {
+            throw new NotFoundException("Cook not found!");
+        }
+
+        return recipeRepository.findById(recipeId)
+                .map(recipe -> {
+                    recipe.setRecipeName(recipeUpdated.getRecipeName());
+                    recipe.setPortion(recipeUpdated.getPortion());
+                    recipe.setMeat(recipeUpdated.getMeat());
+                    recipe.setVegetable(recipeUpdated.getVegetable());
+                    recipe.setOther(recipeUpdated.getOther());
+                    recipe.setInstructions(recipeUpdated.getInstructions());
+                    return recipeRepository.save(recipe);
+                }).orElseThrow(() -> new NotFoundException("Recipe not found!"));
+    }
+
+
 }
