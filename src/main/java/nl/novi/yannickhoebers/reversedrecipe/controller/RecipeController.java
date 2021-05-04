@@ -60,5 +60,20 @@ public class RecipeController {
                 }).orElseThrow(() -> new NotFoundException("Recipe not found!"));
     }
 
+    @DeleteMapping("/cooks/{cookId}/recipes/{recipeId}")
+    public String deleteRecipe(@PathVariable Long cookId,
+                               @PathVariable Long recipeId) {
+
+        if(!cookRepository.existsById(cookId)) {
+            throw new NotFoundException("Cook not found!");
+        }
+
+        return recipeRepository.findById(recipeId)
+                .map(recipe -> {
+                    recipeRepository.delete(recipe);
+                    return "Deleted Successfully!";
+                }).orElseThrow(() -> new NotFoundException("Recipe not found!"));
+    }
+
 
 }
